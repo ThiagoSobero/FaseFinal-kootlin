@@ -11,26 +11,22 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class ContactRepositoryImpl @Inject constructor(
-    private val remoteDataSource: RemoteDataSource,
+    private val remote: RemoteDataSource,
     private val dao: ContactDao
-) : ContactRepository
- {
+) : ContactRepository {
 
     override fun getContacts() =
-        dao.getAll().map { list ->
-            list.map { it.toDomain() }
-        }
+        dao.getAll().map { it.map { e -> e.toDomain() } }
 
     override suspend fun importContacts() {
-        val response = remoteDataSource.getContacts()
-
-        val entities = response.results.map {
+        val response = remote.getContacts()
+        dao.insertAll(response.results.map {
             ContactEntity(
                 name = "${it.name.first} ${it.name.last}",
                 city = it.location.city,
                 picture = it.picture.medium
             )
-        }
-        dao.insertAll(entities)
+        })
     }
 }
+

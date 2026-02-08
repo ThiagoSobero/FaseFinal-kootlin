@@ -19,3 +19,4 @@ abstract class RepositoryModule {
         impl: ContactRepositoryImpl
     ): ContactRepository
 }
+

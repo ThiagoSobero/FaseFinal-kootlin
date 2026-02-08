@@ -32,21 +32,19 @@ fun ContactItem(
 
             Image(
                 painter = rememberAsyncImagePainter(contact.picture),
-                contentDescription = "Foto contacto",
+                contentDescription = null,
                 modifier = Modifier.size(56.dp)
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(Modifier.width(16.dp))
 
             Column {
-                Text(
-                    text = contact.name,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(text = contact.city)
+                Text(contact.name, fontWeight = FontWeight.Bold)
+                Text(contact.city)
             }
         }
     }
 }
+
 
 

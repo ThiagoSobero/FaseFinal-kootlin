@@ -29,13 +29,10 @@ fun LoginScreen(
     viewModel: LoginViewModel = viewModel()
 ) {
     var user by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    var pass by remember { mutableStateOf("") }
+    val loginOk by viewModel.loginOk.collectAsState()
 
-    val loginSuccess by viewModel.loginSuccess.collectAsState()
-
-    if (loginSuccess) {
-        onLoginSuccess()
-    }
+    if (loginOk) onLoginSuccess()
 
     Column(
         modifier = Modifier
@@ -43,34 +40,14 @@ fun LoginScreen(
             .padding(24.dp),
         verticalArrangement = Arrangement.Center
     ) {
-
-        Text("Login", style = MaterialTheme.typography.headlineLarge)
-
-        Spacer(Modifier.height(16.dp))
-
+        TextField(value = user, onValueChange = { user = it }, label = { Text("Usuario") })
         TextField(
-            value = user,
-            onValueChange = { user = it },
-            label = { Text("Usuario") },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(Modifier.height(8.dp))
-
-        TextField(
-            value = password,
-            onValueChange = { password = it },
+            value = pass,
+            onValueChange = { pass = it },
             label = { Text("Contraseña") },
-            visualTransformation = PasswordVisualTransformation(),
-            modifier = Modifier.fillMaxWidth()
+            visualTransformation = PasswordVisualTransformation()
         )
-
-        Spacer(Modifier.height(16.dp))
-
-        Button(
-            onClick = { viewModel.login(user, password) },
-            modifier = Modifier.fillMaxWidth()
-        ) {
+        Button(onClick = { viewModel.login(user, pass) }) {
             Text("Entrar")
         }
     }
