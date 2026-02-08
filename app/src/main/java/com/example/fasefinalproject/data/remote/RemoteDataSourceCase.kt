@@ -8,3 +8,4 @@ class RemoteDataSource @Inject constructor(
     suspend fun getContacts() = apiService.getContacts()
 }
 
+

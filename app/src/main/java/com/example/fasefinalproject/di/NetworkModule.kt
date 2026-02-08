@@ -27,4 +27,5 @@ object NetworkModule {
         retrofit: Retrofit
     ): ApiService =
         retrofit.create(ApiService::class.java)
+
 }
