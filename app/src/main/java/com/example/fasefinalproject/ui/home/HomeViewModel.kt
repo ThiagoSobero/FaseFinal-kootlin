@@ -2,8 +2,7 @@ package com.example.fasefinalproject.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fasefinal.domain.repository.ContactRepository
-
+import com.example.fasefinalproject.domain.repository.ContactRepository
 
 
 import dagger.hilt.android.lifecycle.HiltViewModel

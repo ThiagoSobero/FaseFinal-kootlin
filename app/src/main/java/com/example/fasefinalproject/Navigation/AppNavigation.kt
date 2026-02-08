@@ -14,18 +14,13 @@ import com.example.fasefinalproject.ui.login.LoginScreen
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    NavHost(
-        navController = navController,
-        startDestination = "login"
-    ) {
+    NavHost(navController, startDestination = "login") {
 
         composable("login") {
-
             LoginScreen(
                 onLoginSuccess = {
                     navController.navigate("home") {
                         popUpTo("login") { inclusive = true }
-                        launchSingleTop = true
                     }
                 }
             )
@@ -40,3 +35,4 @@ fun AppNavigation() {
         }
     }
 }
+

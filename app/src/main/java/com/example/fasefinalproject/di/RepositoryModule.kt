@@ -15,7 +15,7 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun bindContactRepository(
+    abstract fun bindRepository(
         impl: ContactRepositoryImpl
     ): ContactRepository
 }
